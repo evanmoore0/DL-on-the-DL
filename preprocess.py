@@ -14,7 +14,7 @@ print('Manipulating the dataframe...')
 
 # Importing the dataset
 columns = ["target", "ids", "date", "flag", "user", "text"]
-df_all = pd.read_csv('../data/twitter_data.csv', encoding="ISO-8859-1",
+df_all = pd.read_csv('./data/twitter_data.csv', encoding="ISO-8859-1",
                      names=columns)
 
 # Keeping only the label and the tweets
@@ -70,6 +70,9 @@ print('Fitting the tokenizer on text and finding vocabulary size...')
 tokenizer.fit_on_texts(X_train)
 train_unique_words = sorted(set(X_train))
 vocab_sz = len(train_unique_words)
+
+print("VOCAB SIZE")
+print(vocab_sz)
 
 print('Transforming text to sequences and padding the sequences...')
 # Transforming text to sequences and padding the sequences
