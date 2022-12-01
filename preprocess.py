@@ -27,7 +27,7 @@ df_all['target'] = df_all['target'].replace([4], 1)
 # We want to work only on the sample of our data
 df = df_all.sample(500000, random_state=42)  # 49.875% of tweets are negative, so we preserve the balance of labels
 
-# Definining a set of stopwords to use later
+# Defining a set of stopwords to use later
 stop_words = set(stopwords.words('english'))
 
 # Exporting the 'text' column to a list so that it's easier to manipulate words
