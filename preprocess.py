@@ -9,6 +9,8 @@ from sklearn.model_selection import train_test_split
 nltk.download('stopwords')
 nltk.download('wordnet')
 nltk.download('omw-1.4')
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
 
 print('Manipulating the dataframe...')
 
@@ -86,4 +88,31 @@ padded_test_sequence = tf.keras.preprocessing.sequence.pad_sequences(test_sequen
 padded_train_sequence = np.array(padded_train_sequence)
 padded_test_sequence = np.array(padded_test_sequence)
 X_train, X_test, y_train, y_test = np.array(X_train), np.array(X_test), np.array(y_train), np.array(y_test)
+
+#print(1, X_test[0:5])
+
+
+#vectorizing the words in each sentence creating a vector of sentences that are a vector of words
+X_test = np.array([nltk.word_tokenize(sentence) for sentence in X_test])
+
+
+#add tags to each word in a sentence that reprents its form
+#output is a vector of sentences with each word being in a tuple of the word and the tag
+X_test = np.array([nltk.pos_tag(sentence) for sentence in X_test])
+
+
+#part of speech tags associated with verbs
+#full list of part-of-speech tags https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html
+verb_tags = ['VB','VBD','VBG','VBN','VBP','VBZ']
+
+#remove verbs from sentences based on tags
+X_test = [[tag_nested for tag_nested in tag if tag_nested[1] not in verb_tags] for tag in X_test]
+
+#unpacks the tuples to only retain the words returning an array of str
+X_test = [[tup[0] for tup in sentence] for sentence in X_test]
+#print(5, X_test[0:2])
+
+#combines 
+X_test = [" ".join(sentence) for sentence in X_test]
+#print(6, X_test[0:5])
 
