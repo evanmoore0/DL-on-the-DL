@@ -27,7 +27,7 @@ class MyRNN(tf.keras.Model):
         ## Define an embedding component to embed the word indices into a trainable embedding space.
         ## Define a recurrent component to reason with the sequence of data. 
         ## You may also want a dense layer near the end...    
-        self.input_layer = tf.keras.layers.InputLayer(input_shape=(22,))
+        self.input_layer = tf.keras.layers.InputLayer()
         self.embedding = tf.keras.layers.Embedding(vocab_size, embed_size) # Input (None, 22) -> Output (None, 22, 128)
         # self.dropout = tf.keras.layers.SpatialDropout1D(0.2)
 
@@ -58,7 +58,7 @@ class MyRNN(tf.keras.Model):
 
         # Input Layer takes (None, 22) -> (None, 22):
         inputs = self.input_layer(inputs)
-        print(inputs.shape)
+        # print(inputs.shape)
         # Embedding Layer takes (None, 22) -> (None, 22, 128)
         inputs = self.embedding(inputs)
         # Apply SpatialDropout1D (None, 22, 128) -> (None, 22, 128)):
