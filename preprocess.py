@@ -13,19 +13,6 @@ nltk.download('omw-1.4')
 nltk.download('punkt')
 nltk.download('averaged_perceptron_tagger')
 
-def parse_args():
-    """ 
-    Perform command-line argument parsing (other otherwise parse arguments with defaults). 
-    To parse in an interative context (i.e. in notebook), add required arguments.
-    These will go into args and will generate a list that can be passed in.
-    For example: 
-        parse_args('--type', 'rnn', ...)
-    """
-    parser = argparse.ArgumentParser(description="Let's train some language model", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--omit',           required=True,              choices=['verb', 'noun', 'adjective', 'none'],     help='which parts-of-speech to omit in testing data')
-    if args is None: 
-        return parser.parse_args()      ## For calling through command line
-
 print('Manipulating the dataframe...')
 
 # Importing the dataset
@@ -97,6 +84,7 @@ print("Before", X_train[0:5])
 verb_tags = ['VB','VBD','VBG','VBN','VBP','VBZ']
 noun_tags = ['NN','NNS','NNP','NNPS']
 adjective_tags = ['JJ','JJR','JJS']
+adverb_tags = ['RB', 'RBR', 'RBS']
 
 
 #vectorizing the words in each sentence creating a vector of sentences that are a vector of words
