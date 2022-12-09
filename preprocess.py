@@ -85,6 +85,7 @@ verb_tags = ['VB','VBD','VBG','VBN','VBP','VBZ']
 noun_tags = ['NN','NNS','NNP','NNPS']
 adjective_tags = ['JJ','JJR','JJS']
 adverb_tags = ['RB', 'RBR', 'RBS']
+adjective_adverb_tags = ['JJ','JJR','JJS','RB', 'RBR', 'RBS']
 
 
 #vectorizing the words in each sentence creating a vector of sentences that are a vector of words
@@ -95,7 +96,7 @@ X_train = np.array([nltk.word_tokenize(sentence) for sentence in X_train])
 X_train = np.array([nltk.pos_tag(sentence) for sentence in X_train])
 
 #remove verbs from sentences based on tags
-X_train = [[tag_nested for tag_nested in tag if tag_nested[1] not in noun_tags] for tag in X_train]
+X_train = [[tag_nested for tag_nested in tag if tag_nested[1] not in adjective_adverb_tags] for tag in X_train]
 
 #unpacks the tuples to only retain the words returning an array of str
 X_train = [[tup[0] for tup in sentence] for sentence in X_train]
